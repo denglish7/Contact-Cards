@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+        <title>Contact Card</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('form' ).submit(function(){
+                var firstName = $('input[name="first_name"]').val();
+                var lastName = $('input[name="last_name"]').val();
+                var description = $('textarea[name="description"]').val();
+                $('.contactcards').append(`
+                    <div class="card">
+                    <h2>${firstName + " " + lastName}</h2>
+                    <h3>Click for description</h3>
+                    <p>${description}</p>
+                    </div>`)
+                return false;
+            })
+            $(document).on('click', '.card', function(){
+                $(this).children('p').slideToggle();
+                $(this).children('h3').slideToggle();
+                // $(this).slideToggle();
+            })
+        });
+        </script>
+        <style>
+            label {
+                display: block;
+                text-align: right;
+                width: 200px;
+                margin: 5px;
+            }
+            textarea {
+                vertical-align: top;
+            }
+            .card {
+                border: 1px solid black;
+            }
+            .contactcards {
+                display: inline-block;
+                margin-left: 100px;
+            }
+            .input {
+                display: inline-block;
+                vertical-align: top;
+                width: 200px;
+                text-align: right;
+            }
+            p {
+                display:none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="input">
+                <form class="" action="index.html" method="post">
+                    <label>
+                        First Name:<input type="text" name="first_name" value="First Name">
+                    </label>
+                    <label>
+                        Last Name:<input type="text" name="last_name" value="Last Name">
+                    </label>
+                    Description:<textarea name="description"></textarea>
+                    <input type="submit" value="Add User">
+                </form>
+            </div>
+            <div class="contactcards">
+
+            </div>
+        </div>
+    </body>
+</html>
